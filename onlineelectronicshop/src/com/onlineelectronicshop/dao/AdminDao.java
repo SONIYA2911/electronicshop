@@ -13,7 +13,7 @@ import com.onlineelectronicshop.model.User;
 
 public class AdminDao {
 public static User validateAdmin(String email,String password) {
-	String validateQuery="select * from user_details where role='Admin' and email_id='"+email+"'and password='"+password+"'";
+	String validateQuery="select * from user_details where role='admin' and email_id='"+email+"'and password='"+password+"'";
 	Connection con=ConnectionUtil.getDbConnection();
 	User user=null;
 	try {
@@ -23,30 +23,17 @@ public static User validateAdmin(String email,String password) {
 		{
 			user=new User(rs.getString(2),email,password,Long.parseLong(rs.getString(5)),rs.getString(6));
 		}
-		else {
-			System.out.println("not a valid user");
-		}
-
-
-
+		
 } catch (SQLException e) {
 	// TODO Auto-generated catch block
 	e.printStackTrace();
 	
 
 }
-	return user;
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+return user;	
 }
-	
+
+
+
 	
 	    }

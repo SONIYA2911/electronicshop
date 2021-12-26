@@ -24,8 +24,8 @@ import com.onlineelectronicshop.model.User;
 			
 			try {
 				pstmt = con.prepareStatement(insertQuery);
-				pstmt.setString(1, user.getUser_name());
-				pstmt.setString(2, user.getEmail_id());
+				pstmt.setString(1, user.getUserName());
+				pstmt.setString(2, user.getEmailId());
 				pstmt.setString(3, user.getPassword());
 				pstmt.setLong(4, user.getContactNumber());
 				pstmt.setString(5,user.getAddress());
@@ -40,9 +40,9 @@ import com.onlineelectronicshop.model.User;
 		}
 		
 		
-			public static User validateUser(String email_id,String password)
+			public static User validateUser(String emailId,String password)
 			{
-				String validateQuery="select * from user_details where role='user' and email_id='"+email_id+"'and password='"+password+"'";
+				String validateQuery="select * from user_details where role='user' and email_id='"+emailId+"'and password='"+password+"'";
 				Connection con=ConnectionUtil.getDbConnection();
 				User user=null;
 				try {
@@ -50,14 +50,8 @@ import com.onlineelectronicshop.model.User;
 					ResultSet rs=st.executeQuery(validateQuery);
 					if(rs.next())
 					{
-						user=new User(rs.getString(2),email_id,password,Long.parseLong(rs.getString(5)),rs.getString(6));
+						user=new User(rs.getString(2),emailId,password,Long.parseLong(rs.getString(5)),rs.getString(6));
 					}
-					else {
-						System.out.println("not a valid user");
-					}
-			
-			
-			
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -67,13 +61,13 @@ import com.onlineelectronicshop.model.User;
 			
 			}
 			public void update(String update){
-				String updatequery="update user_details set password=? where user_id=?";
+				String updatequery="update user_details set password=? where email_id=?";
 				Connection con=ConnectionUtil.getDbConnection();
 				System.out.println("connection get succesfully");
 				try {
 					PreparedStatement pstmt=con.prepareStatement(updatequery);
 					pstmt.setString(1, update.split(",")[0]);
-					pstmt.setInt(2,Integer.parseInt(update.split(",")[1]));
+					pstmt.setString(2,update.split(",")[1]);
 					int i=pstmt.executeUpdate();
 					System.out.println(i+"row updated");
 					pstmt.close();
@@ -87,12 +81,12 @@ import com.onlineelectronicshop.model.User;
 			}
 			
 			    public void deleteUser(String delete){
-				String deleteQuery="delete from user_details where user_id=?";
+				String deleteQuery="delete from user_details where email_id=?";
 				Connection con=ConnectionUtil.getDbConnection();
 				System.out.println("connection get successfully");
 				try {
 				PreparedStatement pstmt=con.prepareStatement(deleteQuery);
-				pstmt.setInt(1,Integer.parseInt(delete));
+				pstmt.setString(1,delete);
 				int i=pstmt.executeUpdate();
 				System.out.println(i+"row deleted");
 				pstmt.close();
@@ -104,17 +98,18 @@ import com.onlineelectronicshop.model.User;
 			}
 			
 			    }	
-				public static int findUserId(String email_id)
+				public static int findUserId(String userName)
 				{
-					String findUserID="select user_id from user_details where email_id'"+email_id+'"';
+					String findUserId="select user_id from user_details where user_name='"+userName+"'";
 					Connection con=ConnectionUtil.getDbConnection();
 					Statement stmt;
 					int userId=0;
 					try {
 						stmt = con.createStatement();
-						ResultSet rs=stmt.executeQuery(findUserID);
+						ResultSet rs=stmt.executeQuery(findUserId);
 						if(rs.next())
 						{
+						
 						userId=rs.getInt(1);
 						}
 						
@@ -147,10 +142,35 @@ import com.onlineelectronicshop.model.User;
 					
 					return UsersList;
 				}
+				//wallet
+				public int walletBalance(int id) throws SQLException {
+					Connection con=ConnectionUtil.getDbConnection();
+					String query="select wallet from user_details where user_id=?";
+					PreparedStatement pstmt=con.prepareStatement(query);
+					pstmt.setInt(1,id);
+					ResultSet rs=pstmt.executeQuery();
+					while(rs.next()) {
+						return rs.getInt(1);
+					}
+					return -1;
+				}
 				
-				
-				
-			    	
+			    //update wallet
+				public int updateWallet(int amount,int userId) throws SQLException {
+					Connection con=ConnectionUtil.getDbConnection();
+					String query="update user_details set wallet=? where user_id=?";
+					PreparedStatement pstmt=con.prepareStatement(query);
+					pstmt.setInt(1, amount);
+					pstmt.setInt(2, userId);
+					int result=pstmt.executeUpdate();
+					System.out.println(result);
+					pstmt.executeUpdate("commit");
+					return result;
+					
+					
+					
+					
+				}
 				}
 				
 				 

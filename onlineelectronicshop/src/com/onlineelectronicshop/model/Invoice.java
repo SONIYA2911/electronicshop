@@ -1,5 +1,7 @@
 package com.onlineelectronicshop.model;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 public class Invoice {
@@ -7,7 +9,7 @@ public class Invoice {
 	private Components component;
 	private User user;
 	private Cart cart;
-	private double finalPrice;
+	private Date orderDate;
 	public Components getComponent() {
 		return component;
 	}
@@ -26,43 +28,28 @@ public class Invoice {
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-	public double getFinalPrice() {
-		return finalPrice;
+	
+	public Date getOrderDate() {
+		return orderDate;
 	}
-	public void setFinalPrice(double finalPrice) {
-		this.finalPrice = finalPrice;
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
 	}
-	public Invoice(Components component, User user, Cart cart, double finalPrice) {
+	public Invoice(Components component, User user, Cart cart, Date orderDate) {
 		super();
 		this.component = component;
 		this.user = user;
 		this.cart = cart;
-		this.finalPrice = finalPrice;
+		this.orderDate = orderDate;
+	}
+	@Override
+	public String toString() {
+		return "Invoice [component=" + component + ", user=" + user + ", cart=" + cart + 
+				 ", orderDate=" + orderDate + "]";
 	}
 	public Invoice() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	@Override
-	public String toString() {
-		return "Invoice [component=" + component + ", user=" + user + ", cart=" + cart + ", finalPrice=" + finalPrice
-				+ "]";
-	}
-	@Override
-	public int hashCode() {
-		return Objects.hash(cart, component, finalPrice, user);
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Invoice other = (Invoice) obj;
-		return Objects.equals(cart, other.cart) && Objects.equals(component, other.component)
-				&& Double.doubleToLongBits(finalPrice) == Double.doubleToLongBits(other.finalPrice)
-				&& Objects.equals(user, other.user);
-	}
+	
 }

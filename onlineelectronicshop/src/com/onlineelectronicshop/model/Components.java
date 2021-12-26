@@ -8,29 +8,17 @@ package com.onlineelectronicshop.model;
 
 	public class Components {
 
-		private String componentId;
+	
 		private String componentName;
-		private String CategoryId;
 		private String categoryName;
 		private String description;
-		private double totalPrice;
-		public String getComponentId() {
-			return componentId;
-		}
-		public void setComponentId(String componentId) {
-			this.componentId = componentId;
-		}
+		private double price;
+		
 		public String getComponentName() {
 			return componentName;
 		}
 		public void setComponentName(String componentName) {
 			this.componentName = componentName;
-		}
-		public String getCategoryId() {
-			return CategoryId;
-		}
-		public void setCategoryId(String categoryId) {
-			CategoryId = categoryId;
 		}
 		public String getCategoryName() {
 			return categoryName;
@@ -45,36 +33,31 @@ package com.onlineelectronicshop.model;
 			this.description = description;
 		}
 		public double getTotalPrice() {
-			return totalPrice;
+			return price;
 		}
 		public void setTotalPrice(double totalPrice) {
-			this.totalPrice = totalPrice;
+			this.price = totalPrice;
 		}
-		public Components(String componentId, String componentName, String categoryId, String categoryName,
-				String description, double totalPrice) {
+		public Components(String componentName, String categoryName, String description,
+				double totalPrice) {
 			super();
-			this.componentId = componentId;
 			this.componentName = componentName;
-			CategoryId = categoryId;
 			this.categoryName = categoryName;
 			this.description = description;
-			this.totalPrice = totalPrice;
+			this.price = totalPrice;
 		}
 		public Components() {
 			super();
 			// TODO Auto-generated constructor stub
 		}
-		
-		
 		@Override
 		public String toString() {
-			return "Components [componentId=" + componentId + ", componentName=" + componentName + ", CategoryId="
-					+ CategoryId + ", categoryName=" + categoryName + ", description=" + description + ", totalPrice="
-					+ totalPrice + "]";
+			return "Components [ componentName=" + componentName + ", categoryName="
+					+ categoryName + ", description=" + description + ", totalPrice=" + price + "]";
 		}
 		@Override
 		public int hashCode() {
-			return Objects.hash(CategoryId, categoryName, componentId, componentName, description, totalPrice);
+			return Objects.hash(categoryName, componentName, description, price);
 		}
 		@Override
 		public boolean equals(Object obj) {
@@ -85,14 +68,18 @@ package com.onlineelectronicshop.model;
 			if (getClass() != obj.getClass())
 				return false;
 			Components other = (Components) obj;
-			return Objects.equals(CategoryId, other.CategoryId) && Objects.equals(categoryName, other.categoryName)
-					&& Objects.equals(componentId, other.componentId)
+			return Objects.equals(categoryName, other.categoryName)
 					&& Objects.equals(componentName, other.componentName)
 					&& Objects.equals(description, other.description)
-					&& Double.doubleToLongBits(totalPrice) == Double.doubleToLongBits(other.totalPrice);
+					&& Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price);
 		}
 		
 		
 		
 		
-	}
+		}
+		
+		
+		
+		
+	
