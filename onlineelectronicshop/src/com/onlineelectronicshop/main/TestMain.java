@@ -278,7 +278,7 @@ public class TestMain {
 								e.printStackTrace();
 							}
 							
-							int dedwallbal = (int)(walletbalance - TotalPrice);
+							int dedwallbal = (int)(walletbal - TotalPrice);
 							System.out.println("\n 1.confirm order \n 2.cancel order");
 							
 							int orderConfirmation =scan.nextInt();
@@ -286,16 +286,15 @@ public class TestMain {
 							switch (orderConfirmation) 
 							{
 							case 1:
-								if (TotalPrice <= walletbalance) {
+								if (TotalPrice <= walletbal) {
 									int upd =0; 
 									try {
-									userDao.updateWallet(dedwallbal, userid1);
+									upd=userDao.updateWallet(dedwallbal, userid1);
 									}catch(Exception e) {
 										e.printStackTrace();
 									}
 									if(upd > 0) {
 										Cart cart1 = new Cart (comid,userid1,quantity,TotalPrice);
-										
 								        CartDao.insertCart(cart1);
 									System.out.println("order placed successfully!!!");
 									}else {
