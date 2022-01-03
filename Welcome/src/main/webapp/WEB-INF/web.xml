@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>Welcome</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>Sample</display-name>
+    <servlet-name>Sample</servlet-name>
+    <servlet-class>servletsample.Sample</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Sample</servlet-name>
+    <url-pattern>/Sample</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Sample2</display-name>
+    <servlet-name>Sample2</servlet-name>
+    <servlet-class>servletsample.Sample2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Sample2</servlet-name>
+    <url-pattern>/Sample2</url-pattern>
+  </servlet-mapping>
+</web-app>

@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: x-operator
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: edit-resources
+rules:
+- apiGroups: [""]
+  resources: ["pods", "replicationcontrollers", "services", "configmaps"]
+  verbs: ["create", "delete", "deletecollection", "get", "list", "update", "watch", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: RoleBinding
+metadata:
+  name: x-operator-edit-resources
+roleRef:
+  kind: Role
+  name: edit-resources
+  apiGroup: ""
+subjects:
+  - kind: ServiceAccount
+    name: x-operator
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: x-operator
+  labels: &default-labels
+    app.kubernetes.io/name: x-operator
+    app.kubernetes.io/version: v0.0.1-v1alpha1
+spec:
+  replicas: 1
+  selector:
+    matchLabels: *default-labels
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels: *default-labels
+    spec:
+      serviceAccountName: x-operator
+      containers:
+      - name: x-operator
+        image: io.radanalytics/x-operator:latest
+        #env:
+        #- name: WATCHED_NAMESPACE
+        #  value: myproject
+        #- name: CRD
+        #  value: true
+        #- name: COLORS
+        #  value: false
+        imagePullPolicy: IfNotPresent
+
