@@ -23,7 +23,7 @@ import com.onlineelectronicshop.util.ConnectionUtil;
 			    Statement stmt=con.createStatement();
 			    ResultSet rs=stmt.executeQuery(showQuery);
 			    while(rs.next()) {
-			    	Components component=new Components(rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5));
+			    	Components component=new Components(rs.getInt(0),rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5));
 			    	componentsList.add(component);                         
 			    }
 			    			                          

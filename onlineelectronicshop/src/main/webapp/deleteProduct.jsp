@@ -1,13 +1,11 @@
-
-  <%@  page import="com.onlineelectronicshop.daoImpl.ComponentDaoImpl"%>
+<%@  page import="com.onlineelectronicshop.daoImpl.ComponentDaoImpl"%>
   <%@ page import="com.onlineelectronicshop.model.Components" %>
   <%@ page import="java.util.List" %>
-  
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>list of components</title>
+<title>Insert title her</title>
 <style>
 table,td,tr{
 border:1px solid black;
@@ -39,10 +37,12 @@ Components comDao1=componentList.get(i);
 <td><%=comDao1.getCategoryName()%></td>
 <td><%=comDao1.getDescription() %></td>
 <td><%=comDao1.getTotalPrice() %></td>
-<td><a href="insertcart.jsp?produId=<%=comDao1.getCompoentId()%>">Add Cart</a></td>
+<td><a href="deleteProduct.jsp?produId=<%=comDao1.getCompoentId()%>">delete</a></td>
 </tr>
 <%} %>
-</table>
-</form>
+<%int produId=Integer.parseInt(request.getParameter("produId"));
+comDao.deleteComponent(produId);
+%>
+
 </body>
 </html>

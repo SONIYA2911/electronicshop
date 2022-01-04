@@ -39,12 +39,16 @@ public class DeleteProductServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		ComponentDaoImpl comDao=new ComponentDaoImpl();
 		int componentId=Integer.parseInt(request.getParameter("componentId"));
-		try {
-			comDao.deleteComponent(componentId);
-		} catch (SQLException e) {
+		
+			try {
+				comDao.deleteComponent(componentId);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			
 		response.sendRedirect("admin.jsp");
 		doGet(request, response);
 	}

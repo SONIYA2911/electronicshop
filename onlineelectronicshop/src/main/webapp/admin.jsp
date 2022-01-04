@@ -13,8 +13,10 @@
 </form>
 <br>
 <form>
+<label>Show Components</label>
 <a href="showproduct.jsp">Show all components</a>
 </form>
+<br>
 <form action="DeleteProductServlet">
 Enter productId:
 <input type="text" name="componentId">

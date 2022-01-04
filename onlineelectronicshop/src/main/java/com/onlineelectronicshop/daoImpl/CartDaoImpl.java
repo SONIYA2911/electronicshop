@@ -18,7 +18,7 @@ public class CartDaoImpl {
 public static void  insertCart(Cart cart) throws SQLException {
 	ComponentDaoImpl comDao=new ComponentDaoImpl(); 
 	UserDaoImpl userDaoImpl=new UserDaoImpl();
-	String insertQuery = "insert into order_items (user_id,component_id,quantity,total_price) values(?,?,?,?)";
+	String insertQuery = "insert into cart(cart_id,user_id,component_id,quantity,total_price) values(?,?,?,?,?)";
 Connection con=ConnectionUtil.getDbConnection();
 PreparedStatement pstmt=null;
 try {
@@ -33,13 +33,11 @@ System.out.println("value inserted successfully");
 }catch(SQLException e) {
 	e.printStackTrace();
 }
-
-
 }
 //view cart
 public List<Cart> viewCart(User currentUser) {
 	List<Cart> userCartList = new ArrayList<Cart>();
-	String query = "select * from order_items";
+	String query = "select * from cart";
 	Connection con = ConnectionUtil.getDbConnection();	
 	ComponentDaoImpl comDao = new ComponentDaoImpl();		
 	try {
@@ -48,7 +46,6 @@ public List<Cart> viewCart(User currentUser) {
 		while (rs.next()) {				
 			
 		    userCartList.add(new Cart(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getDouble(5)));
-	   
 		}
 		
 	} catch (Exception e) {
@@ -57,7 +54,7 @@ public List<Cart> viewCart(User currentUser) {
 	return userCartList;
 }
 public static void updateCart(String updateCart) throws ClassNotFoundException, SQLException {
-	String updateQuery = "update order_items set quantity =? where item_id=?";
+	String updateQuery = "update cart set quantity =? where cart_id=?";
 
 	Connection con = ConnectionUtil.getDbConnection();
 	PreparedStatement pstmt = con.prepareStatement(updateQuery);
@@ -72,7 +69,7 @@ public static void updateCart(String updateCart) throws ClassNotFoundException, 
 // delete cart
 
 public static void deleteCart(String deleteCart)  {
-	String deleteQuery = "delete from order_items where item_id=?";
+	String deleteQuery = "delete from cart where cart_id=?";
 
 	Connection con = ConnectionUtil.getDbConnection();
 	PreparedStatement pstmt;
@@ -89,7 +86,7 @@ public static void deleteCart(String deleteCart)  {
 	}}
 
 	public static Cart findCart(int cartId) {
-		String query = "select * from order_items where item_id=?";
+		String query = "select * from cart where cart_id=?";
 
 		Connection con = ConnectionUtil.getDbConnection();
 		Cart cart = null;

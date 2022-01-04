@@ -2,7 +2,7 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
 			"https://www.springframework.org/dtd/spring-beans-2.0.dtd">
 			<beans>
-			<bean id="emp" class="com.chainsys.TestSpring.Employee" scope="">
+			<bean id="emp" class="com.chainsys.TestSpring.Employee" scope="prototype">
 			
 			
 			

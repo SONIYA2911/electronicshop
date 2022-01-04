@@ -1,17 +1,26 @@
 package com.onlineelectronicshop.model;
 
-
-
 	import java.util.Objects;
-
-
-
 	public class Components {
+		private int compoentId;
 		private String componentName;
 		private String categoryName;
 		private String description;
 		private double price;
 		
+		
+		public int getCompoentId() {
+			return compoentId;
+		}
+		public void setCompoentId(int compoentId) {
+			this.compoentId = compoentId;
+		}
+		public double getPrice() {
+			return price;
+		}
+		public void setPrice(double price) {
+			this.price = price;
+		}
 		public String getComponentName() {
 			return componentName;
 		}
@@ -46,6 +55,18 @@ package com.onlineelectronicshop.model;
 		}
 		public Components() {
 			super();
+			// TODO Auto-generated constructor stub
+		}
+		public Components(int int1, String string, String string2, String string3, double double1) {
+			this.compoentId=int1;
+			this.componentName = string;
+			this.categoryName = string2;
+			this.description = string3;
+			this.price = double1;
+		}
+		public Components(int int1, int int2, String string, String string2, String string3, double double1) {
+		
+		
 			// TODO Auto-generated constructor stub
 		}
 		@Override

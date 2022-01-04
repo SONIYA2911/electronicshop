@@ -4,17 +4,18 @@ import java.sql.Date;
 import java.util.Objects;
 
 public class Cart {
-	private int itemId;
+	private int cartId;
 private int componetId;
 private int userId;
 private int quantity;
 private double totalPrice;
 
-public int getItemId() {
-	return itemId;
+
+public int getCartId() {
+	return cartId;
 }
-public void setItemId(int itemId) {
-	this.itemId = itemId;
+public void setCartId(int cartId) {
+	this.cartId = cartId;
 }
 public int getComponetId() {
 	return componetId;
@@ -40,25 +41,26 @@ public double getTotalPrice() {
 public void setTotalPrice(double totalPrice) {
 	this.totalPrice = totalPrice;
 }
-public Cart(int componetId, int userId, int quantity, double totalPrice) {
+
+
+public Cart() {
 	super();
+	// TODO Auto-generated constructor stub
+}
+public Cart(int cartId, int componetId, int userId, int quantity, double totalPrice) {
+	super();
+	this.cartId = cartId;
 	this.componetId = componetId;
 	this.userId = userId;
 	this.quantity = quantity;
 	this.totalPrice = totalPrice;
 }
-public Cart() {
-	super();
+public Cart(int int1, int int2, int int3, double double1) {
+	this.cartId=int1;
+	this.componetId=int2;
+	this.userId=int3;
+	this.totalPrice=double1;
 	// TODO Auto-generated constructor stub
-}
-public Cart(int int1, int int2, int int3, int int4, double double1) {
-	// TODO Auto-generated constructor stub
-	super();
-	this.itemId=int1;
-	this.componetId = int2;
-	this.userId = int3;
-	this.quantity = int4;
-	this.totalPrice = double1;
 }
 @Override
 public String toString() {
